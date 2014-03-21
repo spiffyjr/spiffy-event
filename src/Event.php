@@ -10,11 +10,6 @@ class Event
     protected $stopped = false;
 
     /**
-     * @var bool
-     */
-    protected $collectResponses = false;
-
-    /**
      * @var array
      */
     protected $params = [];
@@ -39,22 +34,6 @@ class Event
         $this->type = $type;
         $this->target = $target;
         $this->params = $params;
-    }
-
-    /**
-     * @param boolean $collectResponses
-     */
-    public function setCollectResponses($collectResponses)
-    {
-        $this->collectResponses = $collectResponses;
-    }
-
-    /**
-     * @return boolean
-     */
-    public function getCollectResponses()
-    {
-        return $this->collectResponses;
     }
 
     /**

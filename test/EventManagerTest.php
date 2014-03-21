@@ -36,6 +36,18 @@ class EventManagerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @covers ::on
+     * @covers \Spiffy\Events\Exception\InvalidPriorityException::__construct
+     * @expectedException \Spiffy\Events\Exception\InvalidPriorityException
+     * @expectedExceptionMessage Invalid argument: expected integer but received boolean
+     */
+    public function testOnThrowsExceptionForInvalidPriorities()
+    {
+        $em = new EventManager();
+        $em->on('foo', function() { }, false);
+    }
+
+    /**
      * @covers ::clear
      */
     public function testClear()
@@ -46,6 +58,17 @@ class EventManagerTest extends \PHPUnit_Framework_TestCase
 
         $em->clear();
         $this->assertCount(0, $em->getEvents());
+    }
+
+    /**
+     * @covers ::fire
+     */
+    public function testFireCreatesEventIfNotGiven()
+    {
+        $em = new EventManager();
+        $response = $em->fire('foo');
+
+        $this->assertInstanceOf('SplQueue', $response);
     }
 
     /**
@@ -69,40 +92,24 @@ class EventManagerTest extends \PHPUnit_Framework_TestCase
     /**
      * @covers ::fire
      */
-    public function testFireReturnsLastResponseByDefault()
-    {
-        $em = new EventManager();
-        $em->on('foo', function() { return 'first'; });
-        $em->on('foo', function() { return 'second'; });
-
-        $this->assertNull($em->fire('bar'));
-        $this->assertSame('second', $em->fire('foo'));
-    }
-
-    /**
-     * @covers ::fire
-     */
-    public function testCollectResponsesReturnsNonCollectionIfFalse()
+    public function testResponseResultIsFirstInFirstOut()
     {
         $em = new EventManager();
         $event = new Event('foo');
-        $event->setCollectResponses(false);
 
-        $this->assertNull($em->fire($event));
+        $em->on('foo', function() { return 3; });
+        $em->on('foo', function() { return 2; }, 2);
+        $em->on('foo', function() { return 1; });
 
-        $em->on('foo', function() { return 'foo'; });
-        $this->assertSame('foo', $em->fire($event));
-    }
+        $response = $em->fire($event);
+        $response->rewind();
 
-    /**
-     * @covers ::fire
-     */
-    public function testCollectResponsesReturnsCollectionIfTrue()
-    {
-        $em = new EventManager();
-        $event = new Event('foo');
-        $event->setCollectResponses(true);
-
-        $this->assertInstanceOf('SplStack', $em->fire($event));
+        $this->assertInstanceOf('SplQueue', $response);
+        $this->assertCount(3, $response);
+        $this->assertSame(2, $response->current());
+        $response->next();
+        $this->assertSame(3, $response->current());
+        $response->next();
+        $this->assertSame(1, $response->current());
     }
 }

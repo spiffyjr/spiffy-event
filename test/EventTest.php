@@ -59,15 +59,4 @@ class EventTest extends \PHPUnit_Framework_TestCase
         $this->assertCount(2, $event->getParams());
         $this->assertSame($expected, $event->getParams());
     }
-
-    /**
-     * @covers ::getCollectResponse, ::setCollectResponse
-     */
-    public function testSetGetCollectResponse()
-    {
-        $event = new Event('foo');
-        $this->assertFalse($event->getCollectResponses());
-        $event->setCollectResponses(true);
-        $this->assertTrue($event->getCollectResponses());
-    }
 }

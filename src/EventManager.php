@@ -14,6 +14,14 @@ class EventManager implements Manager
     protected $events = [];
 
     /**
+     * This is used to give some regularity (FIFO) to SplPriorityQueue when queueing
+     * with the same priority.
+     *
+     * @var int
+     */
+    protected $queueOrder = PHP_INT_MAX;
+
+    /**
      * {@inheritDoc}
      */
     public function getEvents($type = null)
@@ -35,13 +43,17 @@ class EventManager implements Manager
     /**
      * {@inheritDoc}
      */
-    public function on($type, $callable, $priority = 1)
+    public function on($type, $callable, $priority = 0)
     {
         if (!is_callable($callable)) {
             throw new Exception\InvalidCallableException($callable);
         }
 
-        $this->getQueue($type)->insert($callable, $priority);
+        if (!is_int($priority)) {
+            throw new Exception\InvalidPriorityException($priority);
+        }
+
+        $this->getQueue($type)->insert($callable, [$priority, $this->queueOrder--]);
         return $this;
     }
 
@@ -58,19 +70,12 @@ class EventManager implements Manager
             $type = $typeOrEvent;
         }
 
-        $result = new \SplStack();
-
-        if (empty($this->events[$type])) {
-            return $event->getCollectResponses() ? $result : null;
+        $response = new \SplQueue();
+        foreach ($this->getQueue($type) as $callable) {
+            $response->enqueue($callable($event));
         }
 
-        $queue = $this->getQueue($type);
-
-        foreach ($queue as $callable) {
-            $result->push($callable($event));
-        }
-
-        return $event->getCollectResponses() ? $result : $result->top();
+        return $response;
     }
 
     /**
