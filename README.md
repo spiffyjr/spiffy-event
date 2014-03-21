@@ -45,7 +45,7 @@ $em->on('foo', function() { echo 'b'; }, 10);
 $em->on('foo', function() { echo 'c'; });
 $em->on('foo', function() { echo 'd'; });
 
-// When fired, the result would be a SplQueue with 'bacd'
+// echos 'bacd'
 ```
 
 ## Firing events
