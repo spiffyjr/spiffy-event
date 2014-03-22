@@ -1,10 +1,10 @@
 <?php
 
-namespace Spiffy\Events;
+namespace Spiffy\Event;
 
 /**
  * Class EventManager
- * @package Spiffy\Events
+ * @package Spiffy\Event
  */
 class EventManager implements Manager
 {
@@ -54,7 +54,6 @@ class EventManager implements Manager
         }
 
         $this->getQueue($type)->insert($callable, [$priority, $this->queueOrder--]);
-        return $this;
     }
 
     /**

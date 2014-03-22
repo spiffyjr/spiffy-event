@@ -1,11 +1,12 @@
 {
-    "name": "spiffy/spiffy-events",
+    "name": "spiffy/spiffy-event",
     "authors": [
         {
             "name": "Kyle Spraggs",
             "email": "theman@spiffyjr.me"
         }
     ],
+    "description": "SpiffyEvent is a light-weight, HHVM compatible, and dependency free event library.",
     "require": {
         "php": ">=5.4"
     },
@@ -16,7 +17,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Spiffy\\Events\\": "src/"
+            "Spiffy\\Event\\": "src/"
         }
     }
 }

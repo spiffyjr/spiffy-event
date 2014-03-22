@@ -1,18 +1,15 @@
-# SpiffyEvents
+# SpiffyEvent
 
-[![Build Status](https://travis-ci.org/spiffyjr/spiffy-events.svg)](https://travis-ci.org/spiffyjr/spiffy-events)
-[![Coverage Status](https://coveralls.io/repos/spiffyjr/spiffy-events/badge.png)](https://coveralls.io/r/spiffyjr/spiffy-events)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/spiffyjr/spiffy-events/badges/quality-score.png?s=b78ceecc07bd9aea4a0ef2f34683981d47ed352c)](https://scrutinizer-ci.com/g/spiffyjr/spiffy-events/)
-
-SpiffyEvents is a light-weight event manager. It supports basic event concepts and utilizes as much as the SPL stack
-as available to remain performant.
+[![Build Status](https://travis-ci.org/spiffyjr/spiffy-event.svg)](https://travis-ci.org/spiffyjr/spiffy-event)
+[![Coverage Status](https://coveralls.io/repos/spiffyjr/spiffy-event/badge.png)](https://coveralls.io/r/spiffyjr/spiffy-event)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/spiffyjr/spiffy-event/badges/quality-score.png?s=b78ceecc07bd9aea4a0ef2f34683981d47ed352c)](https://scrutinizer-ci.com/g/spiffyjr/spiffy-event/)
 
 ## Create an event
 
 ```php
 <?php
 
-use Spiffy\Events\Event;
+use Spiffy\Event\Event;
 
 // Create an event that fires on 'foo'
 $event = new Event('foo');
@@ -21,7 +18,7 @@ $event = new Event('foo');
 $event = new Event('foo', 'target');
 $event->getTarget(); // 'target'
 
-// Events can have parameters too
+// Event can have parameters too
 $event = new Event('foo', 'target', ['foo' => 'bar']);
 $event->getParams()['foo']; // 'bar'
 ```
@@ -31,7 +28,7 @@ $event->getParams()['foo']; // 'bar'
 ```php
 <?php
 
-use Spiffy\Events\EventManager;
+use Spiffy\Event\EventManager;
 
 $em = new EventManager();
 
@@ -41,7 +38,7 @@ $em->on('foo', function() { echo 'a'; }, 1);
 // Listen with a higher priority
 $em->on('foo', function() { echo 'b'; }, 10);
 
-// Events default with priority 0
+// Event default with priority 0
 $em->on('foo', function() { echo 'c'; });
 $em->on('foo', function() { echo 'd'; });
 
@@ -53,8 +50,8 @@ $em->on('foo', function() { echo 'd'; });
 ```php
 <?php
 
-use Spiffy\Events\Event;
-use Spiffy\Events\EventManager;
+use Spiffy\Event\Event;
+use Spiffy\Event\EventManager;
 
 $em = new EventManager();
 $em->on('foo', function() { echo 'fired'; });
@@ -76,8 +73,8 @@ $em->fire($event);
 ```php
 <?php
 
-use Spiffy\Events\Event;
-use Spiffy\Events\EventManager;
+use Spiffy\Event\Event;
+use Spiffy\Event\EventManager;
 
 $em = new EventManager();
 

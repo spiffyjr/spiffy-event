@@ -1,6 +1,6 @@
 <?php
 
-namespace  Spiffy\Events;
+namespace  Spiffy\Event;
 
 class Event
 {

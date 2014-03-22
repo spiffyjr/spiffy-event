@@ -1,12 +1,12 @@
 <?php
 
-namespace Spiffy\Events;
+namespace Spiffy\Event;
 
 /**
  * Class EventTest
- * @package Spiffy\Events
+ * @package Spiffy\Event
  *
- * @coversDefaultClass \Spiffy\Events\Event
+ * @coversDefaultClass \Spiffy\Event\Event
  */
 class EventTest extends \PHPUnit_Framework_TestCase
 {

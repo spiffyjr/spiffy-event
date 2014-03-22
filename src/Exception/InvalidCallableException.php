@@ -1,6 +1,6 @@
 <?php
 
-namespace Spiffy\Events\Exception;
+namespace Spiffy\Event\Exception;
 
 class InvalidCallableException extends \InvalidArgumentException
 {

@@ -1,12 +1,12 @@
 <?php
 
-namespace Spiffy\Events;
+namespace Spiffy\Event;
 
 /**
  * Class EventManagerTest
- * @package Spiffy\Events
+ * @package Spiffy\Event
  *
- * @coversDefaultClass Spiffy\Events\EventManager
+ * @coversDefaultClass Spiffy\Event\EventManager
  */
 class EventManagerTest extends \PHPUnit_Framework_TestCase
 {
@@ -25,8 +25,8 @@ class EventManagerTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @covers ::on
-     * @covers \Spiffy\Events\Exception\InvalidCallableException::__construct
-     * @expectedException \Spiffy\Events\Exception\InvalidCallableException
+     * @covers \Spiffy\Event\Exception\InvalidCallableException::__construct
+     * @expectedException \Spiffy\Event\Exception\InvalidCallableException
      * @expectedExceptionMessage Invalid argument: expected callable but received boolean
      */
     public function testOnThrowsExceptionForNonCallable()
@@ -37,8 +37,8 @@ class EventManagerTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @covers ::on
-     * @covers \Spiffy\Events\Exception\InvalidPriorityException::__construct
-     * @expectedException \Spiffy\Events\Exception\InvalidPriorityException
+     * @covers \Spiffy\Event\Exception\InvalidPriorityException::__construct
+     * @expectedException \Spiffy\Event\Exception\InvalidPriorityException
      * @expectedExceptionMessage Invalid argument: expected integer but received boolean
      */
     public function testOnThrowsExceptionForInvalidPriorities()
