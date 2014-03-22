@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/spiffyjr/spiffy-event.svg)](https://travis-ci.org/spiffyjr/spiffy-event)
 [![Coverage Status](https://coveralls.io/repos/spiffyjr/spiffy-event/badge.png)](https://coveralls.io/r/spiffyjr/spiffy-event)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/spiffyjr/spiffy-event/badges/quality-score.png?s=b78ceecc07bd9aea4a0ef2f34683981d47ed352c)](https://scrutinizer-ci.com/g/spiffyjr/spiffy-event/)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/spiffyjr/spiffy-event/badges/quality-score.png?s=279062fbeb70ce48056990eb05d886db49d13c3d)](https://scrutinizer-ci.com/g/spiffyjr/spiffy-event/)
 
 ## Create an event
 
