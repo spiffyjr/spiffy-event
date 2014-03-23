@@ -4,6 +4,13 @@
 [![Coverage Status](https://coveralls.io/repos/spiffyjr/spiffy-event/badge.png)](https://coveralls.io/r/spiffyjr/spiffy-event)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/spiffyjr/spiffy-event/badges/quality-score.png?s=279062fbeb70ce48056990eb05d886db49d13c3d)](https://scrutinizer-ci.com/g/spiffyjr/spiffy-event/)
 
+## Installation
+Spiffy\Event can be installed using composer which will setup any autoloading for you.
+
+`composer require spiffy/spiffy-event`
+
+Additionally, you can download or clone the repository and setup your own autoloading.
+
 ## Create an event
 
 ```php
