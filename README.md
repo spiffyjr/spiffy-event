@@ -14,8 +14,6 @@ Additionally, you can download or clone the repository and setup your own autolo
 ## Create an event
 
 ```php
-<?php
-
 use Spiffy\Event\Event;
 
 // Create an event that fires on 'foo'
@@ -33,8 +31,6 @@ $event->getParams()['foo']; // 'bar'
 ## Listening to events
 
 ```php
-<?php
-
 use Spiffy\Event\EventManager;
 
 $em = new EventManager();
@@ -55,8 +51,6 @@ $em->on('foo', function() { echo 'd'; });
 ## Firing events
 
 ```php
-<?php
-
 use Spiffy\Event\Event;
 use Spiffy\Event\EventManager;
 
@@ -78,8 +72,6 @@ $em->fire($event);
 ## Handling responses
 
 ```php
-<?php
-
 use Spiffy\Event\Event;
 use Spiffy\Event\EventManager;
 
