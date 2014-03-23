@@ -12,6 +12,5 @@ tools:
     external_code_coverage: true
     php_cs_fixer:
         enabled: true
-        command: vendor/bin/phpcs --standard=PSR2 -s -p src/
         config:
             level: psr2
