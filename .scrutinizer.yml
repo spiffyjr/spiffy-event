@@ -11,4 +11,7 @@ build_failure_conditions:
 tools:
     external_code_coverage: true
     php_cs_fixer:
-        config: { level: psr2 }
+        enabled: true
+        command: vendor/bin/phpcs --standard=PSR2 -s -p src/
+        config:
+            level: psr2
