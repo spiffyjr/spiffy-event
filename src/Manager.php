@@ -27,12 +27,13 @@ interface Manager
      * @param string $name
      * @param mixed $target
      * @param array $params
-     * @return mixed
+     * @return \SplQueue
      */
     public function fire($name, $target, array $params = []);
 
     /**
      * Clears all events.
+     * @return void
      */
     public function clear();
 }
