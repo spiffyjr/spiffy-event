@@ -1,8 +1,15 @@
 # SpiffyEvent
 
 [![Build Status](https://travis-ci.org/spiffyjr/spiffy-event.svg)](https://travis-ci.org/spiffyjr/spiffy-event)
-[![Coverage Status](https://coveralls.io/repos/spiffyjr/spiffy-event/badge.png)](https://coveralls.io/r/spiffyjr/spiffy-event)
+[![Code Coverage](https://scrutinizer-ci.com/g/spiffyjr/spiffy-event/badges/coverage.png?s=271d4c5ee861f409fc110379e9bee04f333cadea)](https://scrutinizer-ci.com/g/spiffyjr/spiffy-event/)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/spiffyjr/spiffy-event/badges/quality-score.png?s=279062fbeb70ce48056990eb05d886db49d13c3d)](https://scrutinizer-ci.com/g/spiffyjr/spiffy-event/)
+
+## Installation
+Spiffy\Event can be installed using composer which will setup any autoloading for you.
+
+`composer require spiffy/spiffy-event`
+
+Additionally, you can download or clone the repository and setup your own autoloading.
 
 ## Create an event
 
