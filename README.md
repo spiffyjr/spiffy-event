@@ -1,4 +1,4 @@
-# SpiffyEvent
+# Spiffy\Event
 
 [![Build Status](https://travis-ci.org/spiffyjr/spiffy-event.svg)](https://travis-ci.org/spiffyjr/spiffy-event)
 [![Code Coverage](https://scrutinizer-ci.com/g/spiffyjr/spiffy-event/badges/coverage.png?s=271d4c5ee861f409fc110379e9bee04f333cadea)](https://scrutinizer-ci.com/g/spiffyjr/spiffy-event/)
