@@ -85,3 +85,32 @@ $em->on('foo', function() { return 'b'; });
 foreach ($em->fire('foo') as $response) {
     echo $response;
 }
+
+## Attaching listeners
+
+Sometimes you may want to collect several `on()` calls in a single class. Spiffy\Event provides a `Listener` interface
+you can implement and pass to the `attach()` method to prepare several events at a time.
+
+```php
+use Spiffy\Event\Event;
+use Spiffy\Event\Listener;
+
+class MyListener implements Listener
+{
+    public function attach(Manager $events)
+    {
+        $events->on('foo', [$this, 'onFoo']);
+    }
+
+    public function onFoo(Event $e)
+    {
+        echo 'do foo';
+    }
+}
+
+$em = new EventManager();
+$em->attach(new MyListener());
+
+// output is 'do foo'
+$em->fire('foo');
+```
