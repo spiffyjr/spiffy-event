@@ -85,6 +85,7 @@ $em->on('foo', function() { return 'b'; });
 foreach ($em->fire('foo') as $response) {
     echo $response;
 }
+```
 
 ## Attaching listeners
 
