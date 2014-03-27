@@ -37,6 +37,24 @@ class Event
     }
 
     /**
+     * @param string $key
+     * @param mixed $value
+     */
+    public function set($key, $value)
+    {
+        $this->params[$key] = $value;
+    }
+
+    /**
+     * @param string $key
+     * @return mixed
+     */
+    public function get($key)
+    {
+        return isset($this->params[$key]) ? $this->params[$key] : null;
+    }
+
+    /**
      * @param array $params
      */
     public function setParams(array $params)

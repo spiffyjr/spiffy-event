@@ -5,15 +5,23 @@ namespace Spiffy\Event;
 interface Manager
 {
     /**
+     * Attaches events using a listener.
+     *
+     * @param Listener $listener
+     * @return void
+     */
+    public function attach(Listener $listener);
+
+    /**
      * Attaches an event to the queue using the $name as the identifier.
      *
      * @param string $name
      * @param callable $callable
      * @param int $priority
      * @throws Exception\InvalidCallableException
-     * @return $this
+     * @return void
      */
-    public function on($name, $callable, $priority);
+    public function on($name, $callable, $priority = 0);
 
     /**
      * @param null $name
@@ -29,7 +37,7 @@ interface Manager
      * @param array $params
      * @return \SplQueue
      */
-    public function fire($name, $target, array $params = []);
+    public function fire($name, $target = null, array $params = []);
 
     /**
      * Clears all events.

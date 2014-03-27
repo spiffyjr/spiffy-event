@@ -41,6 +41,14 @@ class EventManager implements Manager
     }
 
     /**
+     * @param Listener $listener
+     */
+    public function attach(Listener $listener)
+    {
+        $listener->attach($this);
+    }
+
+    /**
      * {@inheritDoc}
      */
     public function on($type, $callable, $priority = 0)
@@ -65,12 +73,13 @@ class EventManager implements Manager
             $event = $typeOrEvent;
             $type = $event->getType();
         } else {
-            $event = new Event($typeOrEvent, $params);
+            $event = new Event($typeOrEvent, $target, $params);
             $type = $typeOrEvent;
         }
 
         $response = new \SplQueue();
-        foreach ($this->getQueue($type) as $callable) {
+        $queue = clone $this->getQueue($type);
+        foreach ($queue as $callable) {
             $response->enqueue($callable($event));
         }
 
@@ -83,7 +92,7 @@ class EventManager implements Manager
      */
     protected function getQueue($type)
     {
-        if (empty($this->events[$type])) {
+        if (!array_key_exists($type, $this->events)) {
             $this->events[$type] = new \SplPriorityQueue();
         }
         return $this->events[$type];

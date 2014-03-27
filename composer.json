@@ -16,7 +16,10 @@
     },
     "autoload": {
         "psr-4": {
-            "Spiffy\\Event\\": "src/"
+            "Spiffy\\Event\\": [
+                "src/",
+                "test/"
+            ]
         }
     },
     "extra": {

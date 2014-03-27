@@ -1,6 +1,7 @@
 <?php
 
 namespace Spiffy\Event;
+use Spiffy\Event\TestAsset\BasicListener;
 
 /**
  * Class EventManagerTest
@@ -10,6 +11,19 @@ namespace Spiffy\Event;
  */
 class EventManagerTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * @covers ::attach
+     */
+    public function testAttach()
+    {
+        $em = new EventManager();
+        $em->attach(new BasicListener());
+
+        $result = $em->fire('foo');
+
+        $this->assertSame('fired', $result->top());
+    }
+
     /**
      * @covers ::on, ::getEvents
      */
@@ -69,6 +83,37 @@ class EventManagerTest extends \PHPUnit_Framework_TestCase
         $response = $em->fire('foo');
 
         $this->assertInstanceOf('SplQueue', $response);
+    }
+
+    /**
+     * Regression prevention.
+     *
+     * @covers ::fire
+     */
+    public function testFireClonesListenerQueue()
+    {
+        $em = new EventManager();
+        $em->on('foo', function() { });
+
+        $this->assertCount(1, $em->getEvents('foo'));
+        $em->fire('foo');
+        $this->assertCount(1, $em->getEvents('foo'));
+    }
+
+    /**
+     * @covers ::fire
+     */
+    public function testFireSetsTargetProperly()
+    {
+        $target = new \StdClass();
+
+        $em = new EventManager();
+        $em->on('foo', function(Event $event) {
+            return $event->getTarget();
+        });
+
+        $result = $em->fire('foo', $target);
+        $this->assertSame($result->top(), $target);
     }
 
     /**
