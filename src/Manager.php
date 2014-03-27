@@ -32,7 +32,7 @@ interface Manager
     /**
      * Fires an event.
      *
-     * @param string $name
+     * @param string|Event $name
      * @param mixed $target
      * @param array $params
      * @return \SplQueue
