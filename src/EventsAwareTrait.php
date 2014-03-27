@@ -30,6 +30,7 @@ trait EventsAwareTrait
     }
 
     /**
+     * @codeCoverageIgnore
      * @param Manager $events
      */
     protected function initEvents(Manager $events)
