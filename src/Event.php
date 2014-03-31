@@ -29,7 +29,7 @@ class Event
      * @param mixed $target
      * @param array $params
      */
-    public function __construct($type, $target = null, array $params = [])
+    public function __construct($type = null, $target = null, array $params = [])
     {
         $this->type = $type;
         $this->target = $target;
@@ -68,6 +68,14 @@ class Event
     public function getParams()
     {
         return $this->params;
+    }
+
+    /**
+     * @param string $type
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
     }
 
     /**

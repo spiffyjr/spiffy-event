@@ -32,12 +32,15 @@ class EventTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers ::getType
+     * @covers ::getType, ::setType
      */
-    public function testGetType()
+    public function testSetGetType()
     {
+        $event = new Event();
+        $this->assertNull($event->getType());
+
         $type = 'foo';
-        $event = new Event($type);
+        $event->setType($type);
         $this->assertSame($type, $event->getType());
     }
 

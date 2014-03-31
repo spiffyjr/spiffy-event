@@ -77,6 +77,10 @@ class EventManager implements Manager
             $type = $typeOrEvent;
         }
 
+        if (null === $type) {
+            throw new Exception\MissingTypeException();
+        }
+
         $response = new \SplQueue();
         $queue = clone $this->getQueue($type);
         foreach ($queue as $callable) {

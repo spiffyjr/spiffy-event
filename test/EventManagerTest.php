@@ -157,4 +157,16 @@ class EventManagerTest extends \PHPUnit_Framework_TestCase
         $response->next();
         $this->assertSame(1, $response->current());
     }
+
+    /**
+     * @covers ::fire
+     * @expectedException \Spiffy\Event\Exception\MissingTypeException
+     * @expectedExceptionMessage Event object given but no type specified
+     */
+    public function testFiringEventWithNullTargetThrowsException()
+    {
+        $event = new Event();
+        $em = new EventManager();
+        $em->fire($event);
+    }
 }
