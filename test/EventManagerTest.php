@@ -25,6 +25,37 @@ class EventManagerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @covers ::fire, \Spiffy\Event\Exception\ListenerException
+     * @expectedException \Spiffy\Event\Exception\ListenerException
+     * @expectedExceptionMessage Error: exception while firing "foo" caught from
+     */
+    public function testExceptionsAreRethrown()
+    {
+        $em = new EventManager();
+        $em->on('foo', function() { throw new \RuntimeException; });
+        $em->fire('foo');
+    }
+
+    /**
+     * @covers ::fire
+     */
+    public function testEventsStops()
+    {
+        $var = null;
+        $em = new EventManager();
+        $em->on('foo', function($e) use (&$var) {
+            $var = 'foo';
+            $e->stop();
+        });
+        $em->on('foo', function() use (&$var) {
+            $var = 'bar';
+        });
+
+        $em->fire('foo');
+        $this->assertSame('foo', $var);
+    }
+
+    /**
      * @covers ::on, ::getEvents
      */
     public function testOnAddsEventsAndAreRetrievedProperly()

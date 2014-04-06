@@ -87,6 +87,14 @@ class Event
     }
 
     /**
+     * @param mixed $target
+     */
+    public function setTarget($target)
+    {
+        $this->target = $target;
+    }
+
+    /**
      * @return mixed
      */
     public function getTarget()

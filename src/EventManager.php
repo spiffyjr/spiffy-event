@@ -71,20 +71,28 @@ class EventManager implements Manager
     {
         if ($typeOrEvent instanceof Event) {
             $event = $typeOrEvent;
-            $type = $event->getType();
         } else {
             $event = new Event($typeOrEvent, $target, $params);
-            $type = $typeOrEvent;
         }
 
-        if (null === $type) {
+        if (null === $event->getType()) {
             throw new Exception\MissingTypeException();
         }
 
         $response = new \SplQueue();
-        $queue = clone $this->getQueue($type);
+        $queue = clone $this->getQueue($event->getType());
         foreach ($queue as $callable) {
-            $response->enqueue($callable($event));
+            try {
+                $result = $callable($event);
+            } catch (\Exception $originalException) {
+                throw new Exception\ListenerException($event, $originalException);
+            }
+
+            $response->enqueue($result);
+
+            if ($event->isStopped()) {
+                break;
+            }
         }
 
         return $response;

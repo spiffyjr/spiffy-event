@@ -45,13 +45,17 @@ class EventTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers ::getTarget
+     * @covers ::getTarget, ::setTarget
      */
-    public function testGetTarget()
+    public function testSetGetTarget()
     {
         $target = 'testing';
         $event = new Event('foo', $target);
         $this->assertSame($target, $event->getTarget());
+
+        $target2 = 'foobar';
+        $event->setTarget($target2);
+        $this->assertSame($target2, $event->getTarget());
     }
 
     /**
