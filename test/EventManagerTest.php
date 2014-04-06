@@ -25,6 +25,18 @@ class EventManagerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @covers ::fire, \Spiffy\Event\Exception\MissingTypeException
+     * @expectedException \Spiffy\Event\Exception\MissingTypeException
+     * @expectedExceptionMessage Event object given but no type specified
+     */
+    public function testExceptionThrownForMissingType()
+    {
+        $event = new Event();
+        $em = new EventManager();
+        $em->fire($event);
+    }
+
+    /**
      * @covers ::fire, \Spiffy\Event\Exception\ListenerException
      * @expectedException \Spiffy\Event\Exception\ListenerException
      * @expectedExceptionMessage Error: exception while firing "foo" caught from
