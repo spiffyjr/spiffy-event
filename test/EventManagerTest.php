@@ -12,12 +12,12 @@ use Spiffy\Event\TestAsset\BasicPlugin;
 class EventManagerTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @covers ::attach
+     * @covers ::plug
      */
-    public function testAttach()
+    public function testPlug()
     {
         $em = new EventManager();
-        $em->attach(new BasicPlugin());
+        $em->plug(new BasicPlugin());
 
         $result = $em->fire('foo');
 
