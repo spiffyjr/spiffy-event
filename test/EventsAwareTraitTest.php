@@ -10,7 +10,7 @@ use Spiffy\Event\TestAsset\EventsAware;
 class EventsAwareTraitTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @covers ::setEventManager, ::initEvents
+     * @covers ::setEventManager, ::attachDefaultPlugins
      */
     public function testSetEventManagerInitializesEvents()
     {

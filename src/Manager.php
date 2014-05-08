@@ -5,12 +5,12 @@ namespace Spiffy\Event;
 interface Manager
 {
     /**
-     * Attaches events using a listener.
+     * Attaches events using a plugin.
      *
-     * @param Listener $listener
+     * @param Plugin $plugin
      * @return void
      */
-    public function attach(Listener $listener);
+    public function plug(Plugin $plugin);
 
     /**
      * Attaches an event to the queue using the $name as the identifier.

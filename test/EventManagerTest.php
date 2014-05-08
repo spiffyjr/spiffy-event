@@ -1,7 +1,7 @@
 <?php
 
 namespace Spiffy\Event;
-use Spiffy\Event\TestAsset\BasicListener;
+use Spiffy\Event\TestAsset\BasicPlugin;
 
 /**
  * Class EventManagerTest
@@ -17,7 +17,7 @@ class EventManagerTest extends \PHPUnit_Framework_TestCase
     public function testAttach()
     {
         $em = new EventManager();
-        $em->attach(new BasicListener());
+        $em->attach(new BasicPlugin());
 
         $result = $em->fire('foo');
 
@@ -37,8 +37,8 @@ class EventManagerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers ::fire, \Spiffy\Event\Exception\ListenerException
-     * @expectedException \Spiffy\Event\Exception\ListenerException
+     * @covers ::fire, \Spiffy\Event\Exception\PluginException
+     * @expectedException \Spiffy\Event\Exception\PluginException
      * @expectedExceptionMessage Error: exception while firing "foo" caught from
      */
     public function testExceptionsAreRethrown()
@@ -133,7 +133,7 @@ class EventManagerTest extends \PHPUnit_Framework_TestCase
      *
      * @covers ::fire
      */
-    public function testFireClonesListenerQueue()
+    public function testFireClonesPluginQueue()
     {
         $em = new EventManager();
         $em->on('foo', function() { });

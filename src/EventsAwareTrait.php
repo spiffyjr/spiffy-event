@@ -15,7 +15,7 @@ trait EventsAwareTrait
     public function setEventManager(Manager $events)
     {
         $this->events = $events;
-        $this->initEvents($events);
+        $this->attachDefaultPlugins($events);
     }
 
     /**
@@ -33,7 +33,7 @@ trait EventsAwareTrait
      * @codeCoverageIgnore
      * @param Manager $events
      */
-    protected function initEvents(Manager $events)
+    protected function attachDefaultPlugins(Manager $events)
     {
     }
 }

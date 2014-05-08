@@ -9,8 +9,8 @@ class EventsAware
 {
     use EventsAwareTrait;
 
-    protected function initEvents(Manager $events)
+    protected function attachDefaultPlugins(Manager $events)
     {
-        $events->attach(new BasicListener());
+        $events->plug(new BasicPlugin());
     }
 }

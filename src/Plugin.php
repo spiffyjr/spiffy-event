@@ -2,11 +2,11 @@
 
 namespace Spiffy\Event;
 
-interface Listener
+interface Plugin
 {
     /**
      * @param Manager $events
      * @return void
      */
-    public function attach(Manager $events);
+    public function plug(Manager $events);
 }

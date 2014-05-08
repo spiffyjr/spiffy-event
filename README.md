@@ -87,18 +87,19 @@ foreach ($em->fire('foo') as $response) {
 }
 ```
 
-## Attaching listeners
+## Plugins
 
-Sometimes you may want to collect several `on()` calls in a single class. Spiffy\Event provides a `Listener` interface
-you can implement and pass to the `attach()` method to prepare several events at a time.
+Sometimes you may want to collect several `on()` calls in a single class. Spiffy\Event provides a `Plugin` interface
+you can implement and pass to the `plug()` method to prepare several events at a time. The name plugin is used because
+a collection of events is generally used to plugin additional functionality to an object.
 
 ```php
 use Spiffy\Event\Event;
-use Spiffy\Event\Listener;
+use Spiffy\Event\Plugin;
 
-class MyListener implements Listener
+class MyPlugin implements Plugin
 {
-    public function attach(Manager $events)
+    public function plug(Manager $events)
     {
         $events->on('foo', [$this, 'onFoo']);
     }
@@ -110,7 +111,7 @@ class MyListener implements Listener
 }
 
 $em = new EventManager();
-$em->attach(new MyListener());
+$em->attach(new MyPlugin());
 
 // output is 'do foo'
 $em->fire('foo');

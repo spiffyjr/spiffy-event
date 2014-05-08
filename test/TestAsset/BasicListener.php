@@ -2,15 +2,15 @@
 
 namespace Spiffy\Event\TestAsset;
 
-use Spiffy\Event\Listener;
+use Spiffy\Event\Plugin;
 use Spiffy\Event\Manager;
 
-class BasicListener implements Listener
+class BasicPlugin implements Plugin
 {
     /**
      * {@inheritDoc}
      */
-    public function attach(Manager $events)
+    public function plug(Manager $events)
     {
         $events->on('foo', [$this, 'onFoo']);
     }

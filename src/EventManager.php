@@ -41,11 +41,11 @@ class EventManager implements Manager
     }
 
     /**
-     * @param Listener $listener
+     * @param Plugin $plugin
      */
-    public function attach(Listener $listener)
+    public function plug(Plugin $plugin)
     {
-        $listener->attach($this);
+        $plugin->plug($this);
     }
 
     /**
@@ -85,7 +85,7 @@ class EventManager implements Manager
             try {
                 $result = $callable($event);
             } catch (\Exception $originalException) {
-                throw new Exception\ListenerException($event, $originalException);
+                throw new Exception\PluginException($event, $originalException);
             }
 
             $response->enqueue($result);

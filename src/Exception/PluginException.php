@@ -4,7 +4,7 @@ namespace Spiffy\Event\Exception;
 
 use Spiffy\Event\Event;
 
-class ListenerException extends \RuntimeException
+class PluginException extends \RuntimeException
 {
     /**
      * @param Event $event
