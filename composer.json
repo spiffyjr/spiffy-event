@@ -7,6 +7,7 @@
         }
     ],
     "description": "Spiffy\\Event is a light-weight, HHVM compatible, and dependency free event library.",
+    "license": "BSD-3-Clause",
     "require": {
         "php": ">=5.4"
     },
